@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6200ea;
+            --primary-light: #9d46ff;
+            --primary-dark: #0a00b6;
+            --secondary: #ff4081;
+            --error: #f44336;
+            --error-light: #ff7961;
+            --error-dark: #ba000d;
+            --error-bg: #ffebee;
+            --text: #333333;
+            --background: #f9f9f9;
+            --card-bg: #ffffff;
+            --border: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        h1 {
+            color: var(--error);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--error), var(--error-light));
+        }
+        
+        h1 i {
+            margin-right: 10px;
+        }
+        
+        .error-container {
+            background-color: var(--error-bg);
+            color: var(--error-dark);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--error-light);
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(244, 67, 54, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+            }
+        }
+        
+        .error-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--error-dark), var(--error));
+        }
+        
+        .error-icon {
+            font-size: 3rem;
+            color: var(--error);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .broken-note {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        
+        .broken-note i {
+            font-size: 4rem;
+            color: var(--error);
+        }
+        
+        .broken-note::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--error-dark);
+            transform: rotate(-45deg);
+        }
+        
+        .button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            margin-top: 20px;
+        }
+        
+        .button:hover {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .button i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            
+            .error-container {
+                padding: 20px;
+            }
+            
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1><i class="fas fa-exclamation-triangle"></i>Error</h1>
+    
+    <div class="broken-note">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <div class="error-container">
+        <i class="fas fa-times-circle error-icon"></i>
+        <p>{{ error }}</p>
+    </div>
+    
+    <a href="{{ url_for('index') }}" class="button"><i class="fas fa-home"></i>Back to Homepage</a>
+</body>
+</html>
